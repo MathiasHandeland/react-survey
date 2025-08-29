@@ -26,10 +26,14 @@ function Survey() {
     } else {
       setFormData((prev) => ({ ...prev, [name]: value }));
     }
+    console.log(formData); // log form data
   };
 
   const handleSubmit = (event) => {
     event.preventDefault(); // prevent page reload
+
+    console.log("Form submitted: ", formData); // log form data answers to the console when submitted
+
     setAnswersList((prev) => [...prev, formData]); // add new answer to list
     setFormData({ // reset form data
       username: "",
