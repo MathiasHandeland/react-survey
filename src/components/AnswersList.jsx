@@ -1,10 +1,11 @@
 import AnswersItem from "./AnswersItem";
 
-export default function AnswersList(props) {
+function AnswersList(props) {
   console.log("Inside AnswersList: ", props);
 
-  const { answersList } = props;
+  const { answersList } = props; // get answersList from props
 
+  // render a AnswerItem component for each answer in the list
   return (
     <ul>
       {answersList.map((answerItem, i) => (
@@ -13,3 +14,5 @@ export default function AnswersList(props) {
     </ul>
   );
 }
+
+export default AnswersList;

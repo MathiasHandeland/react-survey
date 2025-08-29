@@ -34,6 +34,7 @@ function Survey() {
 
     console.log("Form submitted: ", formData); // log form data answers to the console when submitted
 
+    // add the new submitted answer to the list 
     setAnswersList([
       ...answersList,
       {
@@ -66,7 +67,6 @@ function Survey() {
     <section className="survey__form">
       <form className="form" onSubmit={handleSubmit}>
         <h2>Tell us what you think about your rubber duck!</h2>
-
         <div className="form__group radio">
           <h3>How do you rate your rubber duck color?</h3>
           <ul>
@@ -210,9 +210,7 @@ function Survey() {
       </form>
     </section>
   </main>
-);
-
-
+  );
 }
 
 export default Survey;
