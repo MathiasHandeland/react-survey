@@ -8,7 +8,7 @@ function Survey() {
     username: "",
     email: "",
     color: "",
-    timeSpent: [],
+    interactionTypes: [],
     review: ""
   });
 
@@ -16,15 +16,15 @@ function Survey() {
     const { name, value, type, checked } = event.target; // the input elements triggering change
 
     if (type === "checkbox") {
-        let newTimeSpent = [...formData.timeSpent];
+        let newInteractionType = [...formData.interactionTypes];
         if (checked) {
-          newTimeSpent.push(value); // add if checked
+          newInteractionType.push(value); // add if checked
         } else {
-          newTimeSpent = newTimeSpent.filter(item => item !== value); // remove if unchecked
+          newInteractionType = newInteractionType.filter(item => item !== value); // remove if unchecked
         }
-        setFormData({ ...formData, timeSpent: newTimeSpent }); // update timeSpent array
-      } else { 
-        setFormData({ ...formData, [name]: value }); 
+        setFormData({ ...formData, interactionTypes: newInteractionType }); // update interactionTypes array
+      } else {
+        setFormData({ ...formData, [name]: value });
       }
     console.log(formData); // log form data
   };
@@ -40,7 +40,7 @@ function Survey() {
       username: "",
       email: "",
       color: "",
-      timeSpent: [],
+      interactionTypes: [],
       review: ""
     });
   };
@@ -116,7 +116,7 @@ function Survey() {
                   name="spend-time"
                   type="checkbox"
                   value="swimming"
-                  checked={formData.timeSpent.includes("swimming")}
+                  checked={formData.interactionTypes.includes("swimming")}
                   onChange={handleChange}
                 />
                 Swimming
@@ -128,7 +128,7 @@ function Survey() {
                   name="spend-time"
                   type="checkbox"
                   value="bathing"
-                  checked={formData.timeSpent.includes("bathing")}
+                  checked={formData.interactionTypes.includes("bathing")}
                   onChange={handleChange}
                 />
                 Bathing
@@ -140,7 +140,7 @@ function Survey() {
                   name="spend-time"
                   type="checkbox"
                   value="chatting"
-                  checked={formData.timeSpent.includes("chatting")}
+                  checked={formData.interactionTypes.includes("chatting")}
                   onChange={handleChange}
                 />
                 Chatting
@@ -152,7 +152,7 @@ function Survey() {
                   name="spend-time"
                   type="checkbox"
                   value="noTime"
-                  checked={formData.timeSpent.includes("noTime")}
+                  checked={formData.interactionTypes.includes("noTime")}
                   onChange={handleChange}
                 />
                 I don’t like to spend time with it
