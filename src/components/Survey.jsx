@@ -18,15 +18,15 @@ function Survey() {
     if (type === "checkbox") {
         let newInteractionType = [...formData.interactionTypes];
         if (checked) {
-          newInteractionType.push(value); // add if checked
+          newInteractionType.push(value); // add the interaction type to the array if checked
         } else {
           newInteractionType = newInteractionType.filter(item => item !== value); // remove if unchecked
         }
         setFormData({ ...formData, interactionTypes: newInteractionType }); // update interactionTypes array
-      } else {
+      } else { // handle all other input types than checkbox
         setFormData({ ...formData, [name]: value });
       }
-    console.log(formData); // log form data
+    console.log(formData); // log the current form data
   };
 
   const handleSubmit = (event) => {
@@ -34,7 +34,17 @@ function Survey() {
 
     console.log("Form submitted: ", formData); // log form data answers to the console when submitted
 
-    setAnswersList((prev) => [...prev, formData]); // add new answer to list
+    setAnswersList([
+      ...answersList,
+      {
+        username: formData.username,
+        color: formData.color,
+        interactionTypes: formData.interactionTypes,
+        review: formData.review
+      }
+    ]);
+
+    console.log(answersList);
     // reset form data after submission
     setFormData({ 
       username: "",
