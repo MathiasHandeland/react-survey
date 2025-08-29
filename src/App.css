@@ -55,10 +55,11 @@ h2 {
 
 .survey__form {
   padding: 1rem;
+  margin-left: -6rem;
 }
 
 .survey__list {
-  width: 30vw;
+  width: 40vw;
   margin: 4rem 0;
   margin-left: 1rem;
   padding: 1rem;

@@ -12,7 +12,7 @@ function ItemsList({ list }) {
   return (
     <ul>
       {list.map((item) => (
-        <li>{answersSet[item]}</li>
+        <li key={item}>{answersSet[item]}</li>
       ))}
     </ul>
   );

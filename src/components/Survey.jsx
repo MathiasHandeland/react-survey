@@ -3,8 +3,8 @@ import AnswersList from "./AnswersList";
 
 function Survey() {
   const [open, setOpen] = useState(false); //Ignore this state
-  const [answersList, setAnswersList] = useState([]);
-  const [formData, setFormData] = useState({
+  const [answersList, setAnswersList] = useState([]); // stores all submitted answers in state
+  const [formData, setFormData] = useState({ // holds all current input values of the form, changes when typing
     username: "",
     email: "",
     color: "",
@@ -12,20 +12,20 @@ function Survey() {
     review: ""
   });
 
-
   const handleChange = (event) => {
-    const { name, value, type, checked } = event.target;
+    const { name, value, type, checked } = event.target; // the input elements triggering change
 
     if (type === "checkbox") {
-      setFormData((prev) => {
-        const newTimeSpent = checked
-          ? [...prev.timeSpent, value]
-          : prev.timeSpent.filter((item) => item !== value);
-        return { ...prev, timeSpent: newTimeSpent };
-      });
-    } else {
-      setFormData((prev) => ({ ...prev, [name]: value }));
-    }
+        let newTimeSpent = [...formData.timeSpent];
+        if (checked) {
+          newTimeSpent.push(value); // add if checked
+        } else {
+          newTimeSpent = newTimeSpent.filter(item => item !== value); // remove if unchecked
+        }
+        setFormData({ ...formData, timeSpent: newTimeSpent }); // update timeSpent array
+      } else { 
+        setFormData({ ...formData, [name]: value }); 
+      }
     console.log(formData); // log form data
   };
 
@@ -35,7 +35,8 @@ function Survey() {
     console.log("Form submitted: ", formData); // log form data answers to the console when submitted
 
     setAnswersList((prev) => [...prev, formData]); // add new answer to list
-    setFormData({ // reset form data
+    // reset form data after submission
+    setFormData({ 
       username: "",
       email: "",
       color: "",
@@ -48,7 +49,7 @@ function Survey() {
   <main className="survey">
     <section className={`survey__list ${open ? "open" : ""}`}>
       <h2>Answers list</h2>
-      {/* answers should go here */}
+      {/* This section shows all submitted answers */}
       <AnswersList answersList={answersList} />
     </section>
 
@@ -182,7 +183,7 @@ function Survey() {
         </label>
 
         <label>
-          Leave us your email pretty please??
+          Leave us your email pretty please?
           <input
             type="email"
             name="email"
